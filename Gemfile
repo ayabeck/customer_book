@@ -26,7 +26,11 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
-gem 'rails_autolink'  # link in text
+gem 'bootstrap-sass'    # CSS framework
+gem 'simple_form'       # Form builders
+gem 'kaminari'          # Pagination
+gem 'font-awesome-sass' # Web icon font
+gem 'rails_autolink'    # Link in text
 
 group :development, :test do
   # Use sqlite3 as the database for Active Record

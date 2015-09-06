@@ -1,0 +1,11 @@
+<% flash.each do |name, msg| %>
+  <% bootstrap_class =
+       { success: 'alert-success', notice: 'alert-info', alert: 'alert-warning', error: 'alert-danger' }
+         .fetch(name.to_sym, name.to_s) %>
+  <div class="alert <%= bootstrap_class %> alert-dismissible" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    <%= msg %>
+  </div>
+<% end %>
