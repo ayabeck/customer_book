@@ -11,7 +11,73 @@
  * file per style scope.
  *
  */
+@import "try";
+@import "variables";
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import "bootstrap-datetimepicker";
+@import "font-awesome-sprockets";
+@import "font-awesome";
 
-body { padding-top: 50px; }
+body {
+  //padding-top: 50px;
+  padding-top: 70px;
+}
+
+// Don't zoom up on ios safari
+@media (max-width: $screen-xs-max) {
+  .form-inputs {
+    input, textarea, select {
+      font-size: 16px;
+    }
+  }
+}
+
+.col-label {
+  @extend .col-sm-3;
+}
+
+.col-wrapper {
+  @extend .col-sm-9;
+}
+
+.col-wrapper-nolabel {
+  @extend .col-sm-offset-3;
+  @extend .col-sm-9;
+}
+
+.col-input {
+  @extend .col-sm-8;
+}
+
+.col-error {
+  @extend .col-sm-4;
+}
+
+.col-hint {
+  @extend .col-sm-12;
+}
+
+
+#logo {
+  font-size: 1.7em;
+  letter-spacing: -1px;
+  font-weight: bold;
+}
+
+
+h1 {
+  //font-size: 2em;
+  font-size: 1.8em;
+  letter-spacing: -2px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.link-action {
+  font-size: 1.3em;
+}
+
+#hoge {
+  word-break: break-all;
+}

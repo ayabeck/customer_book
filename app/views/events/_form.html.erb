@@ -2,17 +2,13 @@
   <%= f.error_notification %>
 
   <div class="form-inputs">
-    <%= f.input :name , hint: 'hoge' %>
+    <%= f.input :name %>
     <%= f.input :category %>
     <%= f.input :summary %>
-    <%= f.input :date_on %>
+    <%= f.input :date_on, as: :date, html5: true %>
   </div>
 
-  <div class="form-actions form-group">
-    <div class="col-sm-offset-3 col-sm-9">
-      <div class="col-sm-8 row">
-        <%= f.button :submit %>
-      </div>
-    </div>
+  <div class="form-actions">
+    <%= bootstrap_form_button(f) %>
   </div>
 <% end %>

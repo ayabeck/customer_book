@@ -1,9 +1,12 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Listing Events</h1>
-
-<table class="table table-condensed">
-  <thead>
+<!--<div class="text-center">-->
+  <h1>All Events</h1>
+<!--</div>-->
+<p class="link-action">
+  <%= link_to 'New Event', new_event_path %>
+</p>
+<div class="table-responsive">
+  <table class="table table-condensed table-hover table-striped">
+    <thead>
     <tr>
       <th>Name</th>
       <th>Category</th>
@@ -11,9 +14,9 @@
       <th>Date on</th>
       <th colspan="3"></th>
     </tr>
-  </thead>
+    </thead>
 
-  <tbody>
+    <tbody>
     <% @events.each do |event| %>
       <tr>
         <td><%= event.name %></td>
@@ -22,12 +25,13 @@
         <td><%= event.date_on %></td>
         <td><%= link_to 'Show', event %></td>
         <td><%= link_to 'Edit', edit_event_path(event) %></td>
-        <td><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Destroy', event, method: :delete, data: {confirm: 'Are you sure?'} %></td>
       </tr>
     <% end %>
-  </tbody>
-</table>
+    </tbody>
+  </table>
+</div>
 
-<br>
-
-<%= link_to 'New Event', new_event_path %>
+<div class="text-center">
+  <%= paginate @events %>
+</div>
