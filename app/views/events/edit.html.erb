@@ -1,8 +1,12 @@
-<h1>Editing Event</h1>
+<% provide(:title, controller_name) %>
 
-<%= render 'form' %>
+<div class="page-header">
+  <h1>Event<small>Edit</small></h1>
+</div>
 
 <p class="link-action">
-  <%= link_to 'Show', @event %> |
   <%= link_to 'Back', events_path %>
+  <%= link_to 'Show', @event %>
 </p>
+
+<%= render 'form' %>

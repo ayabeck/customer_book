@@ -19,11 +19,6 @@
 @import "font-awesome-sprockets";
 @import "font-awesome";
 
-body {
-  //padding-top: 50px;
-  padding-top: 70px;
-}
-
 // Don't zoom up on ios safari
 @media (max-width: $screen-xs-max) {
   .form-inputs {
@@ -65,19 +60,41 @@ body {
   font-weight: bold;
 }
 
+body {
+  padding-top: 70px;
+}
 
-h1 {
-  //font-size: 2em;
-  font-size: 1.8em;
-  letter-spacing: -2px;
-  margin: 0 auto;
-  text-align: center;
+.page-header {
+  margin: 0 0 10px 0;
+  h1, h2, h3, h4, h5 {
+    margin: 0;
+    small { padding-left: 10px; }
+  }
 }
 
 .link-action {
-  font-size: 1.3em;
+  font-size: 1.2em;
+  a:not(:last-child) {
+    padding-right: 10px;
+    border-right: solid 1px $gray-lighter;
+    margin-right: 5px;
+  }
 }
 
-#hoge {
-  word-break: break-all;
+footer {
+  margin-top: 20px;
+  border-top: 1px solid $gray-lighter;
+  padding-top: 5px;
+  color: $gray-light;
+  small {
+    float: left;
+  }
+  ul {
+    float: right;
+    list-style: none;
+    li {
+      float: left;
+      margin-left: 10px;
+    }
+  }
 }

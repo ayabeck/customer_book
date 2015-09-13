@@ -1,4 +1,14 @@
 module ApplicationHelper
+  # ページごとの完全なタイトルを返す。
+  def full_title(page_title)
+    base_title = "CustomerBook"
+    if page_title.empty?
+      base_title
+    else
+      "#{ base_title } | #{ page_title }"
+    end
+  end
+
   # usage example
   # <%= simple_form_for(@param) do |f| %>
   #   <div class="form-inputs">
