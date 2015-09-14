@@ -81,10 +81,14 @@ body {
   }
 }
 
+.navbar-right {
+  padding-right: 10px;
+}
+
 footer {
   margin-top: 20px;
   border-top: 1px solid $gray-lighter;
-  padding-top: 5px;
+  padding: 5px 10px;
   color: $gray-light;
   small {
     float: left;
