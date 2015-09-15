@@ -19,6 +19,8 @@
 @import "font-awesome-sprockets";
 @import "font-awesome";
 
+/* simple_form */
+
 // Don't zoom up on ios safari
 @media (max-width: $screen-xs-max) {
   .form-inputs {
@@ -53,15 +55,10 @@
   @extend .col-sm-12;
 }
 
+/* customized bootstrap */
 
-#logo {
-  font-size: 1.7em;
-  letter-spacing: -1px;
-  font-weight: bold;
-}
-
-body {
-  padding-top: 70px;
+blockquote {
+  padding: 5px 10px;
 }
 
 .page-header {
@@ -72,17 +69,14 @@ body {
   }
 }
 
-.link-action {
-  font-size: 1.2em;
-  a:not(:last-child) {
-    padding-right: 10px;
-    border-right: solid 1px $gray-lighter;
-    margin-right: 5px;
-  }
-}
-
 .navbar-right {
   padding-right: 10px;
+}
+
+/* my style */
+
+body {
+  padding-top: 70px;
 }
 
 footer {
@@ -100,5 +94,33 @@ footer {
       float: left;
       margin-left: 10px;
     }
+  }
+}
+
+thead, .td-date {
+  white-space: nowrap;
+}
+
+.td-action {
+  @extend .text-center;
+  white-space: nowrap;
+}
+
+.td-num {
+  @extend .text-right;
+}
+
+#logo {
+  font-size: 1.7em;
+  letter-spacing: -1px;
+  font-weight: bold;
+}
+
+.link-action {
+  font-size: 1.2em;
+  a:not(:last-child) {
+    padding-right: 10px;
+    border-right: solid 1px $gray-lighter;
+    margin-right: 5px;
   }
 }

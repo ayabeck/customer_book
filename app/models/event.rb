@@ -12,5 +12,8 @@
 #
 
 class Event < ActiveRecord::Base
+  has_many :leads
+
   validates :name, presence: true
+  validates :date_on, presence: true
 end

@@ -1,38 +1,35 @@
 <% provide(:title, controller_name) %>
 
 <div class="page-header">
-  <h1>Events</h1>
+  <h2>イベント<small>一覧</small></h2>
 </div>
 
 <p class="link-action">
-  <%= link_to 'New Event', new_event_path %>
-  <%= link_to 'Import', '#' %>
-  <%= link_to 'Export', '#' %>
+  <%= link_to '新規作成', new_event_path %>
+  <%= link_to 'インポート', '#' %>
+  <%= link_to 'エクスポート', '#' %>
 </p>
-
-<!--<blockquote>-->
-  <!--<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>-->
-  <!--<footer>Someone famous in <cite title="Source Title">Source Title</cite></footer>-->
-<!--</blockquote>-->
 
 <div class="table-responsive">
   <table class="table table-condensed table-hover table-striped">
     <thead>
     <tr>
-      <th>Name</th>
-      <th>Category</th>
-      <th>Summary</th>
-      <th>Date on</th>
+      <th>実施日</th>
+      <th>イベント名</th>
+      <th>種別</th>
+      <th>概要</th>
+      <th>リード数</th>
     </tr>
     </thead>
 
     <tbody>
     <% @events.each do |event| %>
       <tr>
+        <td class="td-date"><%= event.date_on %></td>
         <td><%= link_to event.name, event %></td>
         <td><%= event.category %></td>
         <td><%= event.summary %></td>
-        <td><%= event.date_on %></td>
+        <td class="td-num"><%= event.leads.count %></td>
       </tr>
     <% end %>
     </tbody>

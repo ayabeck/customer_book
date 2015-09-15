@@ -1,11 +1,16 @@
 module ApplicationHelper
-  # ページごとの完全なタイトルを返す。
-  def full_title(page_title)
-    base_title = "CustomerBook"
-    if page_title.empty?
-      base_title
-    else
-      "#{ base_title } | #{ page_title }"
+  # 文字列内に記載されたURLやemail_addressesをリンクとして有効にして返す
+  def auto_link_str(str)
+    auto_link(h(str), :all, target: '_blank' ) do |link|
+      truncate(link, length: 30)
+    end
+  end
+
+  # テキストをsimple_formatで整形した上で
+  # テキスト内に記載されたURLやemail_addressesをリンクとして有効にして返す
+  def auto_link_text(text)
+    auto_link(simple_format(h(text)), :all, target: '_blank' ) do |link|
+      truncate(link, length: 30)
     end
   end
 
@@ -29,4 +34,13 @@ module ApplicationHelper
     end
   end
 
+  # ページごとの完全なタイトルを返す。
+  def full_title(page_title)
+    base_title = "CustomerBook"
+    if page_title.empty?
+      base_title
+    else
+      "#{ base_title } | #{ page_title }"
+    end
+  end
 end

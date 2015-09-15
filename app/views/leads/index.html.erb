@@ -1,25 +1,8 @@
 <% provide(:title, controller_name) %>
 
 <div class="page-header">
-  <h2>イベント<small>詳細</small></h2>
+  <h2>リード<small>一覧</small></h2>
 </div>
-
-<p class="link-action">
-  <%= link_to 'イベント一覧', events_path %>
-  <%= link_to '編集', edit_event_path(@event) %>
-  <%= link_to '削除', @event, method: :delete, data: {confirm: 'Are you sure?'} %>
-</p>
-
-<dl class="dl-horizontal">
-  <dt>実施日:</dt><dd><%= @event.date_on %></dd>
-  <dt>イベント名:</dt><dd><%= @event.name %></dd>
-  <dt>種別:</dt><dd><%= @event.category %></dd>
-  <dt>概要:</dt><dd><%= auto_link_text(@event.summary) %></dd>
-</dl>
-
-<blockquote>
-  <p>このイベントのリード</p>
-</blockquote>
 
 <p class="link-action">
   <%= link_to '新規作成', new_lead_path %>
@@ -37,7 +20,7 @@
       <th>役職</th>
       <th>氏名</th>
       <th>きっかけ</th>
-      <th>メモ</th>
+      <th>参加イベント</th>
     </tr>
     </thead>
 
@@ -50,9 +33,13 @@
         <td><%= lead.title %></td>
         <td><%= lead.name %></td>
         <td><%= lead.trigger %></td>
-        <td><%= lead.memo %></td>
+        <td><%= link_to(lead.event.name, lead.event) if lead.event.present? %></td>
       </tr>
     <% end %>
     </tbody>
   </table>
+</div>
+
+<div class="text-center">
+  <%= paginate @leads %>
 </div>
