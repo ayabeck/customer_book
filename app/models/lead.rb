@@ -23,4 +23,5 @@
 
 class Lead < ActiveRecord::Base
   belongs_to :event
+  has_many :contacts
 end

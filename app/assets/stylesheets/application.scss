@@ -101,9 +101,17 @@ thead, .td-date {
   white-space: nowrap;
 }
 
+@mixin horizontal-links {
+  a:not(:last-child) {
+    padding-right: 10px;
+    border-right: solid 1px $gray-lighter;
+    margin-right: 5px;
+  }
+}
+
 .td-action {
-  @extend .text-center;
   white-space: nowrap;
+  @include horizontal-links;
 }
 
 .td-num {
@@ -118,9 +126,5 @@ thead, .td-date {
 
 .link-action {
   font-size: 1.2em;
-  a:not(:last-child) {
-    padding-right: 10px;
-    border-right: solid 1px $gray-lighter;
-    margin-right: 5px;
-  }
+  @include horizontal-links;
 }

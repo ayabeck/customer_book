@@ -51,6 +51,42 @@
   </table>
 </div>
 
+<br>
 <blockquote>
   <p>コンタクト履歴</p>
 </blockquote>
+
+<p class="link-action">
+  <%= link_to '新規作成', new_lead_contact_path(@lead) %>
+  <%= link_to 'インポート', '#' %>
+  <%= link_to 'エクスポート', '#' %>
+</p>
+
+<div class="table-responsive">
+  <table class="table table-condensed table-hover table-striped">
+    <thead>
+    <tr>
+      <th></th>
+      <th>日付</th>
+      <th>内容</th>
+      <th>手段</th>
+      <th>担当者</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <% @lead.contacts.each do |contact| %>
+      <tr>
+        <td class="td-action">
+          <%= link_to '編集', edit_contact_path(contact) %>
+          <%= link_to '削除', contact, method: :delete, data: {confirm: 'Are you sure?'} %>
+        </td>
+        <td><%= contact.date_on %></td>
+        <td><%= contact.content %></td>
+        <td><%= contact.means %></td>
+        <td><%= contact.owner %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>
