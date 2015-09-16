@@ -1,0 +1,35 @@
+en:
+  activerecord:
+    models:
+      contact: Contact
+      event: Event
+      lead: Lead
+    attributes:
+      contact:
+        date_on: Date
+        content: Content
+        means: Means
+        owner: Owner
+      event:
+        name: "Event Name"
+        category: Category
+        summary: Summary
+        date_on: Date
+      lead:
+        company_name: "Company Name"
+        department: Department
+        title: Title
+        name: Name
+        email: Email
+        phone: Phone
+        date_on: Date
+        trigger: Trigger
+        memo: Memo
+        event: "Entry Event"
+    messages:
+      success:
+        create:  "%{model} was successfully created."
+        update:  "%{model} was successfully updated."
+        destroy: "%{model} was successfully deleted."
+        import:  "%{model} was successfully imported."
+        export:  "%{model} was successfully exported."

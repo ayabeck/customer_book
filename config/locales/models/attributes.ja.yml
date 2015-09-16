@@ -1,0 +1,35 @@
+ja:
+  activerecord:
+    models:
+      contact: コンタクト
+      event: イベント
+      lead: リード
+    attributes:
+      contact:
+        date_on: 日付
+        content: 内容
+        means: 手段
+        owner: 担当者
+      event:
+        name: イベント名
+        category: 種別
+        summary: 概要
+        date_on: 実施日
+      lead:
+        company_name: 会社名
+        department: 部署名
+        title: 役職
+        name: 氏名
+        email: メール
+        phone: 電話番号
+        date_on: 獲得日
+        trigger: きっかけ
+        memo: メモ
+        event: 参加イベント
+    messages:
+      success:
+        create:  "%{model}が作成されました。"
+        update:  "%{model}が更新されました。"
+        destroy: "%{model}が削除されました。"
+        import:  "%{model}がインポートされました。"
+        export:  "%{model}がエクスポートされました。"

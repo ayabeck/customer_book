@@ -33,7 +33,8 @@ class ContactsController < ApplicationController
 
     respond_to do |format|
       if @contact.save
-        format.html { redirect_to @contact.lead, notice: 'Contact was successfully created.' }
+        flash[:notice] = success_message(controller_name, action_name)
+        format.html { redirect_to @contact.lead }
         format.json { render :show, status: :created, location: @contact }
       else
         format.html { render :new }
@@ -47,7 +48,8 @@ class ContactsController < ApplicationController
   def update
     respond_to do |format|
       if @contact.update(contact_params)
-        format.html { redirect_to @contact.lead, notice: 'Contact was successfully updated.' }
+        flash[:notice] = success_message(controller_name, action_name)
+        format.html { redirect_to @contact.lead }
         format.json { render :show, status: :ok, location: @contact }
       else
         format.html { render :edit }
@@ -62,7 +64,8 @@ class ContactsController < ApplicationController
     lead = @contact.lead
     @contact.destroy
     respond_to do |format|
-      format.html { redirect_to lead, notice: 'Contact was successfully destroyed.' }
+      flash[:notice] = success_message(controller_name, action_name)
+      format.html { redirect_to lead }
       format.json { head :no_content }
     end
   end
