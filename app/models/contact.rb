@@ -18,4 +18,6 @@
 
 class Contact < ActiveRecord::Base
   belongs_to :lead
+
+  validates :means, presence: true
 end
