@@ -59,7 +59,7 @@
 <p class="link-action">
   <%= link_to '新規作成', new_lead_contact_path(@lead) %>
   <%= link_to 'インポート', '#' %>
-  <%= link_to 'エクスポート', '#' %>
+  <%= link_to 'エクスポート', export_lead_contacts_path(@lead, format: 'csv') %>
 </p>
 
 <div class="table-responsive">

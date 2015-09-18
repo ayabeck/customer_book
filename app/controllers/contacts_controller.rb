@@ -70,6 +70,13 @@ class ContactsController < ApplicationController
     end
   end
 
+
+  # GET /leads/1/contacts/export
+  def export
+    @contacts = Contact.where(lead_id: params[:lead_id])
+    send_data(render_to_string, filename: filename_of(Contact, 'csv'), type: 'text/csv')
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_lead

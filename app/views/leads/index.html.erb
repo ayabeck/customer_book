@@ -7,7 +7,7 @@
 <p class="link-action">
   <%= link_to '新規作成', new_lead_path %>
   <%= link_to 'インポート', '#' %>
-  <%= link_to 'エクスポート', '#' %>
+  <%= link_to 'エクスポート', leads_path(format: 'csv') %>
 </p>
 
 <div class="table-responsive">

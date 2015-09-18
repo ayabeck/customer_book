@@ -43,4 +43,20 @@ module ApplicationHelper
       "#{ base_title } #{ page_title.capitalize }"
     end
   end
+
+  # CSVデータの生成
+  def generate_csv_from(model, instances)
+    columns = model.column_names
+    columns.delete("created_at")
+    columns.delete("updated_at")
+
+    headers = columns.map { |column| model.human_attribute_name(column.to_sym) }
+    csv_data = CSV.generate(headers: headers, write_headers: true) do |csv|
+      csv << columns
+      instances.each do |row|
+        csv << row.attributes.values_at(*columns)
+      end
+    end
+    csv_data.encode(Encoding::SJIS)
+  end
 end

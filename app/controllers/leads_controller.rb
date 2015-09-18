@@ -4,8 +4,15 @@ class LeadsController < ApplicationController
   # GET /leads
   # GET /leads.json
   def index
-    # @leads = Lead.all
-    @leads = Lead.page(params[:page])
+    respond_to do |format|
+      format.html do
+        @leads = Lead.page(params[:page])
+      end
+      format.csv do
+        @leads = Lead.all
+        send_data(render_to_string, filename: filename_of(Lead, 'csv'), type: 'text/csv')
+      end
+    end
   end
 
   # GET /leads/1
@@ -64,6 +71,12 @@ class LeadsController < ApplicationController
       format.html { redirect_to leads_url }
       format.json { head :no_content }
     end
+  end
+
+  # GET /events/1/leads/export
+  def export
+    @leads = Lead.where(event_id: params[:event_id])
+    send_data(render_to_string, filename: filename_of(Lead, 'csv'), type: 'text/csv')
   end
 
   private

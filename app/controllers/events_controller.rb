@@ -4,8 +4,15 @@ class EventsController < ApplicationController
   # GET /events
   # GET /events.json
   def index
-    # @events = Event.all
-    @events = Event.page(params[:page])
+    respond_to do |format|
+      format.html do
+        @events = Event.page(params[:page])
+      end
+      format.csv do
+        @events = Event.all
+        send_data(render_to_string, filename: filename_of(Event, 'csv'), type: 'text/csv')
+      end
+    end
   end
 
   # GET /events/1
