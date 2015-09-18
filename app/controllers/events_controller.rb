@@ -11,7 +11,7 @@ class EventsController < ApplicationController
   # GET /events/1
   # GET /events/1.json
   def show
-    @leads = Lead.all
+    @leads = @event.leads
   end
 
   # GET /events/new
