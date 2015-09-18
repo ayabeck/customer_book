@@ -11,6 +11,7 @@ class LeadsController < ApplicationController
   # GET /leads/1
   # GET /leads/1.json
   def show
+    @contacts = @lead.contacts
   end
 
   # GET /leads/new

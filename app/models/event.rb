@@ -16,4 +16,6 @@ class Event < ActiveRecord::Base
 
   validates :name, presence: true
   validates :date_on, presence: true
+
+  default_scope { order(date_on: :desc) }
 end

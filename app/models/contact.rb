@@ -19,5 +19,7 @@
 class Contact < ActiveRecord::Base
   belongs_to :lead
 
-  validates :means, presence: true
+  validates :date_on, presence: true
+
+  default_scope { order(date_on: :desc) }
 end

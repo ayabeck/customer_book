@@ -41,7 +41,7 @@
     <%# @lead.event.each do |event| %>
     <% if (event = @lead.event) %>
       <tr>
-        <td><%= event.date_on %></td>
+        <td class="td-date"><%= event.date_on %></td>
         <td><%= link_to event.name, event %></td>
         <td><%= event.category %></td>
         <td><%= event.summary %></td>
@@ -75,13 +75,13 @@
     </thead>
 
     <tbody>
-    <% @lead.contacts.each do |contact| %>
+    <% @contacts.each do |contact| %>
       <tr>
         <td class="td-action">
           <%= link_to '編集', edit_contact_path(contact) %>
           <%= link_to '削除', contact, method: :delete, data: {confirm: 'Are you sure?'} %>
         </td>
-        <td><%= contact.date_on %></td>
+        <td class="td-date"><%= contact.date_on %></td>
         <td><%= contact.content %></td>
         <td><%= contact.means %></td>
         <td><%= contact.owner %></td>
