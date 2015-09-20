@@ -57,6 +57,12 @@ module ApplicationHelper
         csv << row.attributes.values_at(*columns)
       end
     end
-    csv_data.encode(Encoding::SJIS)
+
+    # Excelで開けるUTF-8にするためBOM有りにする
+    bom = "   "
+    bom.setbyte(0, 0xEF)
+    bom.setbyte(1, 0xBB)
+    bom.setbyte(2, 0xBF)
+    bom + csv_data
   end
 end

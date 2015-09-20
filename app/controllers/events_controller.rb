@@ -10,7 +10,7 @@ class EventsController < ApplicationController
       end
       format.csv do
         @events = Event.all
-        send_data(render_to_string, filename: filename_of(Event, 'csv'), type: 'text/csv')
+        send_data(render_to_string, filename: filename_of(Event, 'csv'), type: 'text/csv; charset=UTF-8;')
       end
     end
   end
