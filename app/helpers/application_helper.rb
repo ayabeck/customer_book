@@ -34,7 +34,7 @@ module ApplicationHelper
     end
   end
 
-  # ページごとの完全なタイトルを返す。
+  # ページごとの完全なタイトルを返す
   def full_title(page_title)
     base_title = "CustomerBook"
     if page_title.empty?
