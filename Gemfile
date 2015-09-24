@@ -51,6 +51,7 @@ group :development, :test do
   gem 'guard-rspec', require: false
   gem 'annotate'
   gem 'rails-erd'  # ERD (rake filename)(open filename.pdf)
+  gem 'quiet_assets'
 end
 
 group :test do
