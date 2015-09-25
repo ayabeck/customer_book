@@ -51,7 +51,5 @@ module CustomerBook
                        request_specs: false
       g.fixture_replacement :factory_girl, dir: "spec/factories"
     end
-
-    config.web_console.whitelisted_ips = '10.0.1.8'
   end
 end
