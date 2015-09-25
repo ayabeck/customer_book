@@ -73,6 +73,23 @@ class EventsController < ApplicationController
     end
   end
 
+  # GET /events/new_import
+  def new_import
+    @data_import = DataImport.new
+  end
+
+  # POST /events/import
+  def import
+    @data_import = DataImport.new(params[:data_import])
+    @data_import.model = Event
+    if @data_import.save
+      flash[:notice] = success_message(controller_name, action_name)
+      redirect_to events_url
+    else
+      render :new_import
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_event

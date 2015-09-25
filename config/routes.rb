@@ -3,6 +3,8 @@ Rails.application.routes.draw do
     resources :leads, only: [] do
       get :export, on: :collection
     end
+    get  :new_import, on: :collection
+    post :import,     on: :collection
   end
   resources :leads, shallow: true do
     resources :contacts do

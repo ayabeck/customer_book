@@ -34,6 +34,7 @@ gem 'font-awesome-sass' # Web icon font
 gem 'rails_autolink'    # Link in text
 gem 'momentjs-rails'    # Datepicker
 gem 'bootstrap3-datetimepicker-rails' # Datepicker
+gem 'roo' # Read spreadsheet
 
 group :development, :test do
   # Use sqlite3 as the database for Active Record

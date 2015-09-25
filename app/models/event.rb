@@ -18,4 +18,8 @@ class Event < ActiveRecord::Base
   validates :date_on, presence: true
 
   default_scope { order(date_on: :desc) }
+
+  def self.allowed_attributes
+    %w(name category summary date_on)
+  end
 end
