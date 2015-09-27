@@ -9,18 +9,7 @@
 </p>
 
 <%= simple_form_for(@data_import, url: import_events_path) do |f| %>
-  <% if @data_import.errors.any? %>
-    <div class="panel panel-danger">
-      <div class="panel-heading"><%= I18n.t 'simple_form.error_notification.default_message' %></div>
-      <div class="panel-body">
-        <ul class="list-unstyled">
-          <% @data_import.errors.full_messages.each do |msg| %>
-            <li><%= msg %></li>
-          <% end %>
-        </ul>
-      </div>
-    </div>
-  <% end %>
+  <%= form_errors(@data_import) %>
   <div class="form-inputs">
     <%= f.input :file, as: :file %>
   </div>
@@ -31,15 +20,8 @@
 
 <br>
 
-<p>A CSV or Excel file can be used to import records. The first row should be the column name. The following columns are allowed.</p>
-<ul>
-  <% Event.columns.each do |column| %>
-    <% if column.name.in? ["id", *Event.allowed_attributes] %>
-      <li>
-        <strong><%= column.name %></strong> -
-        <%= column.type.to_s.titleize %>型
-      </li>
-    <% end %>
-  <% end %>
-</ul>
-<p>If an <strong>id</strong> is supplied it will update the matching record instead of creating a new one.</p>
+<p>
+  CSVファイルまたはExcel（.xlsx）ファイルを使いデータをインポートできます。 <br>
+  <strong>id</strong>を指定した場合は一致したデータが更新されます。
+  <strong>id</strong>を指定しない場合はデータが新規作成されます。
+</p>

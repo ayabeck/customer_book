@@ -81,7 +81,7 @@ class EventsController < ApplicationController
   # POST /events/import
   def import
     @data_import = DataImport.new(params[:data_import])
-    @data_import.model = Event
+    @data_import.import_to(Event)
     if @data_import.save
       flash[:notice] = success_message(controller_name, action_name)
       redirect_to events_url

@@ -23,13 +23,29 @@ module ApplicationHelper
   #   </div>
   # <% end %>
   def bootstrap_form_button(form)
-    content_tag(:div, class: 'form-group') do
-      content_tag(:div, class: 'col-wrapper-nolabel') do
-        content_tag(:div, class: 'row') do
-          content_tag(:div, class: 'col-input') do
+    content_tag :div, class: 'form-group' do
+      content_tag :div, class: 'col-wrapper-nolabel' do
+        content_tag :div, class: 'row' do
+          content_tag :div, class: 'col-input' do
             form.button :submit
           end
         end
+      end
+    end
+  end
+
+  def form_errors(instance)
+    if instance.errors.any?
+      content_tag :div, class: 'panel panel-danger' do
+        concat(content_tag :div, I18n.t('simple_form.error_notification.default_message'), class: 'panel-heading')
+        body = content_tag :div, class: 'panel-body' do
+          content_tag :ul, class: 'list-unstyled' do
+            instance.errors.full_messages.each do |msg|
+              concat(content_tag :li, msg)
+            end
+          end
+        end
+        concat(body)
       end
     end
   end
@@ -46,9 +62,7 @@ module ApplicationHelper
 
   # CSVデータの生成
   def generate_csv_from(model, instances)
-    columns = model.column_names
-    columns.delete("created_at")
-    columns.delete("updated_at")
+    columns = DataImport.importable_attributes(model)
 
     headers = columns.map { |column| model.human_attribute_name(column.to_sym) }
     csv_data = CSV.generate(headers: headers, write_headers: true) do |csv|

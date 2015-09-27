@@ -10,4 +10,4 @@ ja:
       default_message: "エラーがあります。確認してください。"
     labels:
       data_import:
-        file: 'ファイル'
+        file: 'ファイル選択'
