@@ -1,5 +1,5 @@
 class LeadsController < ApplicationController
-  before_action :set_event, only: [:new, :create, :new_import, :import]
+  before_action :set_event, only: [:new, :create, :export, :new_import, :import]
   before_action :set_lead, only: [:show, :edit, :update, :destroy]
 
   # GET /leads
@@ -79,8 +79,9 @@ class LeadsController < ApplicationController
 
   # GET /events/1/leads/export.csv
   def export
-    @leads = Lead.where(event_id: params[:event_id])
-    send_data(render_to_string, filename: filename_of(Lead, 'csv'), type: 'text/csv')
+    @leads = Lead.where(event_id: @event.id)
+    send_data(render_to_string, filename: filename_of(Lead, 'csv', @event), type: 'text/csv')
+  end
 
   # GET /events/1/leads/new_import
   def new_import
