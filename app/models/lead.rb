@@ -27,6 +27,7 @@ class Lead < ActiveRecord::Base
 
   validates :company_name, presence: true
   validates :date_on, presence: true
+  validates :event_id, presence: true
 
   default_scope { order(date_on: :desc) }
 end

@@ -35,7 +35,7 @@ class ContactsController < ApplicationController
       if @contact.save
         flash[:notice] = success_message(controller_name, action_name)
         format.html { redirect_to @contact.lead }
-        format.json { render :show, status: :created, location: @contact }
+        format.json { render :show, status: :created, location: @contact.lead }
       else
         format.html { render :new }
         format.json { render json: @contact.errors, status: :unprocessable_entity }
