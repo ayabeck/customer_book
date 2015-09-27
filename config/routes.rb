@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
   resources :events do
     resources :leads, except: [:index], shallow: true do
-      get  :export, on: :collection
+      get  :export,     on: :collection
+      get  :new_import, on: :collection
+      post :import,     on: :collection
     end
     get  :new_import, on: :collection
     post :import,     on: :collection

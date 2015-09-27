@@ -23,7 +23,7 @@
 
 <p class="link-action">
   <%= link_to '新規作成', new_event_lead_path(@event) %>
-  <%= link_to 'インポート', '#' %>
+  <%= link_to 'インポート', new_import_event_leads_path(@event) %>
   <%= link_to 'エクスポート', export_event_leads_path(@event, format: 'csv') %>
 </p>
 
