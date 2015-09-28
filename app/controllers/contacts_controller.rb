@@ -1,5 +1,5 @@
 class ContactsController < ApplicationController
-  before_action :set_lead, only: [:index, :new, :create]
+  before_action :set_lead, only: [:index, :new, :create, :export]
   before_action :set_contact, only: [:show, :edit, :update, :destroy]
 
   # GET /contacts
@@ -73,8 +73,8 @@ class ContactsController < ApplicationController
 
   # GET /leads/1/contacts/export
   def export
-    @contacts = Contact.where(lead_id: params[:lead_id])
-    send_data(render_to_string, filename: filename_of(Contact, 'csv'), type: 'text/csv')
+    @contacts = Contact.where(lead_id: @lead.id)
+    send_data(render_to_string, filename: filename_of(Contact, 'csv', @lead), type: 'text/csv')
   end
 
   private
