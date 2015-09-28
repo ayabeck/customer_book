@@ -1,5 +1,5 @@
 class ContactsController < ApplicationController
-  before_action :set_lead, only: [:index, :new, :create, :export]
+  before_action :set_lead, only: [:index, :new, :create, :export, :new_import, :import]
   before_action :set_contact, only: [:show, :edit, :update, :destroy]
 
   # GET /contacts
@@ -70,11 +70,27 @@ class ContactsController < ApplicationController
     end
   end
 
-
   # GET /leads/1/contacts/export
   def export
     @contacts = Contact.where(lead_id: @lead.id)
     send_data(render_to_string, filename: filename_of(Contact, 'csv', @lead), type: 'text/csv')
+  end
+
+  # GET /leads/1/contacts/new_import
+  def new_import
+    @data_import = DataImport.new
+  end
+
+  # POST /leads/1/contacts/import
+  def import
+    @data_import = DataImport.new(params[:data_import])
+    @data_import.init(Contact, @lead)
+    if @data_import.save
+      flash[:notice] = success_message(controller_name, action_name)
+      redirect_to @lead
+    else
+      render :new_import
+    end
   end
 
   private

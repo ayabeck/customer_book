@@ -11,7 +11,7 @@ class DataImport
   before_save { self.valid? }
 
   ALLOWED_EXTENSION = %w(.csv .xlsx).freeze
-  DENY_ATTRIBUTES = %w(created_at updated_at event_id).freeze
+  DENY_ATTRIBUTES = %w(created_at updated_at event_id lead_id).freeze
 
   def self.importable_attributes(model)
     columns = model.column_names

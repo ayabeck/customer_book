@@ -1,0 +1,27 @@
+<% provide(:title, controller_name) %>
+
+<div class="page-header">
+  <h2>コンタクト<small>インポート</small></h2>
+</div>
+
+<p class="link-action">
+  <%= link_to '戻る', @lead %>
+</p>
+
+<%= simple_form_for(@data_import, url: import_lead_contacts_path(@lead)) do |f| %>
+  <%= form_errors(@data_import) %>
+  <div class="form-inputs">
+    <%= f.input :file, as: :file %>
+  </div>
+  <div class="form-actions">
+    <%= bootstrap_form_button(f) %>
+  </div>
+<% end %>
+
+<br>
+
+<p>
+  CSVファイルまたはExcel（.xlsx）ファイルを使いデータをインポートできます。 <br>
+  <strong>id</strong>を指定した場合は一致したデータが更新されます。
+  <strong>id</strong>を指定しない場合はデータが新規作成されます。
+</p>

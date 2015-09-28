@@ -10,7 +10,9 @@ Rails.application.routes.draw do
   end
   resources :leads, only: [:index], shallow: true do
     resources :contacts do
-      get  :export, on: :collection
+      get  :export,     on: :collection
+      get  :new_import, on: :collection
+      post :import,     on: :collection
     end
   end
   # The priority is based upon order of creation: first created -> highest priority.
