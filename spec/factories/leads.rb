@@ -12,13 +12,8 @@
 #  date_on      :date
 #  trigger      :string
 #  memo         :text
-#  event_id     :integer
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
-#
-# Indexes
-#
-#  index_leads_on_event_id  (event_id)
 #
 
 FactoryGirl.define do

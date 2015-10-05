@@ -12,7 +12,8 @@
 #
 
 class Event < ActiveRecord::Base
-  has_many :leads
+  has_many :event_leads, dependent: :destroy
+  has_many :leads, through: :event_leads
 
   validates :name, presence: true
   validates :date_on, presence: true

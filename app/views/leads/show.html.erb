@@ -38,8 +38,7 @@
     </thead>
 
     <tbody>
-    <%# @lead.event.each do |event| %>
-    <% if (event = @lead.event) %>
+    <% @events.each do |event| %>
       <tr>
         <td class="td-date"><%= event.date_on %></td>
         <td><%= link_to event.name, event %></td>

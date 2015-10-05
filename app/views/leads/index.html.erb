@@ -16,7 +16,6 @@
       <th>役職</th>
       <th>氏名</th>
       <th>きっかけ</th>
-      <th>参加イベント</th>
     </tr>
     </thead>
 
@@ -29,7 +28,6 @@
         <td><%= lead.title %></td>
         <td><%= lead.name %></td>
         <td><%= lead.trigger %></td>
-        <td><%= link_to(lead.event.name, lead.event) if lead.event.present? %></td>
       </tr>
     <% end %>
     </tbody>

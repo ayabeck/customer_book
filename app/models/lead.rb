@@ -12,22 +12,17 @@
 #  date_on      :date
 #  trigger      :string
 #  memo         :text
-#  event_id     :integer
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
 #
-# Indexes
-#
-#  index_leads_on_event_id  (event_id)
-#
 
 class Lead < ActiveRecord::Base
-  belongs_to :event
+  has_many :event_leads, dependent: :destroy
+  has_many :events, through: :event_leads
   has_many :contacts
 
   validates :company_name, presence: true
   validates :date_on, presence: true
-  validates :event_id, presence: true
 
   default_scope { order(date_on: :desc) }
 end

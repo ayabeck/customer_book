@@ -11,7 +11,7 @@ class DataImport
   before_save { self.valid? }
 
   ALLOWED_EXTENSION = %w(.csv .xlsx).freeze
-  DENY_ATTRIBUTES = %w(created_at updated_at event_id lead_id).freeze
+  DENY_ATTRIBUTES = %w(created_at updated_at lead_id).freeze
 
   def self.importable_attributes(model)
     columns = model.column_names
@@ -31,6 +31,21 @@ class DataImport
         ActiveRecord::Base.transaction do
           imported_data.each(&:save!)
         end
+
+        if parent_instance
+          if target_model == Lead
+            exist_ids = parent_instance.lead_ids
+            imported_data.each do |data|
+              parent_instance.leads << data unless exist_ids.include?(data.id)
+            end
+          elsif target_model == Contact
+            exist_ids = parent_instance.contact_ids
+            imported_data.each do |data|
+              parent_instance.contacts << data unless exist_ids.include?(data.id)
+            end
+          end
+        end
+
         true
       else
         imported_data.each_with_index do |data, index|
@@ -56,9 +71,6 @@ class DataImport
         row = Hash[[header, spreadsheet.row(i)].transpose]
         data = target_model.find_by_id(row['id']) || target_model.new
         data.attributes = row.to_hash.slice(*DataImport.importable_attributes(target_model))
-        if parent_instance
-          data.attributes = Hash["#{parent_instance.class.to_s.downcase}_id".to_sym, parent_instance.id]
-        end
         data
       end
     end

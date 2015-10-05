@@ -20,6 +20,7 @@ class LeadsController < ApplicationController
   # GET /leads/1.json
   def show
     @contacts = @lead.contacts
+    @events = @lead.events
   end
 
   # GET /leads/new
@@ -40,9 +41,10 @@ class LeadsController < ApplicationController
 
     respond_to do |format|
       if @lead.save
+        @event.leads << @lead
         flash[:notice] = success_message(controller_name, action_name)
-        format.html { redirect_to @lead.event }
-        format.json { render :show, status: :created, location: @lead.event }
+        format.html { redirect_to @event }
+        format.json { render :show, status: :created, location: @event }
       else
         format.html { render :new }
         format.json { render json: @lead.errors, status: :unprocessable_entity }
@@ -68,18 +70,17 @@ class LeadsController < ApplicationController
   # DELETE /leads/1
   # DELETE /leads/1.json
   def destroy
-    event = @lead.event
     @lead.destroy
     respond_to do |format|
       flash[:notice] = success_message(controller_name, action_name)
-      format.html { redirect_to event }
+      format.html { redirect_to leads_url }
       format.json { head :no_content }
     end
   end
 
   # GET /events/1/leads/export.csv
   def export
-    @leads = Lead.where(event_id: @event.id)
+    @leads = @event.leads
     send_data(render_to_string, filename: filename_of(Lead, 'csv', @event), type: 'text/csv')
   end
 
@@ -111,6 +112,6 @@ class LeadsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def lead_params
-      params.require(:lead).permit(:company_name, :department, :title, :name, :email, :phone, :date_on, :trigger, :memo, :event_id)
+      params.require(:lead).permit(:company_name, :department, :title, :name, :email, :phone, :date_on, :trigger, :memo)
     end
 end

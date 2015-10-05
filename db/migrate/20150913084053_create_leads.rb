@@ -10,7 +10,6 @@ class CreateLeads < ActiveRecord::Migration
       t.date :date_on
       t.string :trigger
       t.text :memo
-      t.references :event, index: true, foreign_key: true
 
       t.timestamps null: false
     end
