@@ -19,7 +19,7 @@
 class Lead < ActiveRecord::Base
   has_many :event_leads, dependent: :destroy
   has_many :events, through: :event_leads
-  has_many :contacts
+  has_many :contacts, dependent: :destroy
 
   validates :company_name, presence: true
   validates :date_on, presence: true
