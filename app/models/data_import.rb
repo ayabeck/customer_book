@@ -50,7 +50,7 @@ class DataImport
       else
         imported_data.each_with_index do |data, index|
           data.errors.full_messages.each do |message|
-            errors.add :base, "#{ index+3 }行目: #{ message }"
+            errors.add :base, "#{ index + 3 }行目: #{ message }"
           end
         end
         false
@@ -69,7 +69,7 @@ class DataImport
       header = spreadsheet.row(2)
       (3..spreadsheet.last_row).map do |i|
         row = Hash[[header, spreadsheet.row(i)].transpose]
-        data = target_model.find_by_id(row['id']) || target_model.new
+        data = target_model.find_or_initialize_by(id: row['id'])
         data.attributes = row.to_hash.slice(*DataImport.importable_attributes(target_model))
         data
       end
