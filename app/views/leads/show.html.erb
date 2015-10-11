@@ -26,29 +26,7 @@
   <p>参加イベント</p>
 </blockquote>
 
-<div class="table-responsive">
-  <table class="table table-condensed table-hover">
-    <thead>
-    <tr>
-      <th>実施日</th>
-      <th>イベント名</th>
-      <th>種別</th>
-      <th>概要</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    <% @events.each do |event| %>
-      <tr>
-        <td class="td-date"><%= event.date_on %></td>
-        <td><%= link_to event.name, event %></td>
-        <td><%= event.category %></td>
-        <td><%= event.summary %></td>
-      </tr>
-    <% end %>
-    </tbody>
-  </table>
-</div>
+<%= render partial: 'events/index_table', locals: { events: @events } %>
 
 <br>
 <blockquote>

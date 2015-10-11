@@ -1,0 +1,27 @@
+<div class="table-responsive">
+  <table class="table table-condensed table-hover">
+    <thead>
+    <tr>
+      <th></th>
+      <th>実施日</th>
+      <th>イベント名</th>
+      <th>種別</th>
+      <th>概要</th>
+      <th>リード</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <% events.each do |event| %>
+      <tr>
+        <td class="td-action"><%= link_to '詳細', event %></td>
+        <td class="td-date"><%= event.date_on %></td>
+        <td><%= truncate(event.name, length: 25) %></td>
+        <td><%= truncate(event.category, length: 25) %></td>
+        <td><%= truncate(event.summary, length: 50) %></td>
+        <td><%= event.leads.count %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>

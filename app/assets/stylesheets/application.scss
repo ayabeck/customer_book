@@ -114,10 +114,6 @@ thead, .td-date {
   @include horizontal-links;
 }
 
-.td-num {
-  @extend .text-right;
-}
-
 #logo {
   font-size: 1.7em;
   letter-spacing: -1px;
