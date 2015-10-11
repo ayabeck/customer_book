@@ -1,6 +1,7 @@
 class LeadsController < ApplicationController
-  before_action :set_event, only: [:new, :export, :new_import, :import]
+  before_action :set_event, only: [:new, :create, :export, :new_import, :import]
   before_action :set_lead, only: [:show, :edit, :update, :destroy]
+  before_action :set_back_url, only: [:new, :create, :new_import, :import]
 
   # GET /leads
   # GET /leads.json
@@ -24,6 +25,7 @@ class LeadsController < ApplicationController
   end
 
   # GET /leads/new
+  # GET /events/1/leads/new
   def new
     @lead = Lead.new
     @lead.event_ids = @event.id if @event
@@ -35,6 +37,7 @@ class LeadsController < ApplicationController
 
   # POST /leads
   # POST /leads.json
+  # POST /events/1/leads
   def create
     @lead = Lead.new(lead_params)
 
@@ -85,7 +88,6 @@ class LeadsController < ApplicationController
   # GET /leads/new_import
   def new_import
     @data_import = DataImport.new
-    @back_url = @event || leads_path
   end
 
   # POST /leads/import
@@ -93,11 +95,9 @@ class LeadsController < ApplicationController
     @data_import = DataImport.new(params[:data_import])
     @data_import.init(Lead, @event)
     if @data_import.save
-      redirect_url = @event || leads_url
       flash[:notice] = success_message(controller_name, action_name)
-      redirect_to redirect_url
+      redirect_to @back_url
     else
-      @back_url = @event || leads_path
       render :new_import
     end
   end
@@ -109,6 +109,9 @@ class LeadsController < ApplicationController
     end
     def set_lead
       @lead = Lead.find(params[:id])
+    end
+    def set_back_url
+      @back_url = @event || leads_url
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

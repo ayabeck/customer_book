@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   end
 
   resources :events, concerns: :importable do
-    resources :leads, only: [] do
+    resources :leads, only: [:new, :create] do
       get :export, on: :collection
     end
   end
