@@ -45,13 +45,13 @@ ActiveRecord::Schema.define(version: 20150928134527) do
   end
 
   create_table "leads", force: :cascade do |t|
+    t.date     "date_on"
     t.string   "company_name"
     t.string   "department"
     t.string   "title"
     t.string   "name"
     t.string   "email"
     t.string   "phone"
-    t.date     "date_on"
     t.string   "trigger"
     t.text     "memo"
     t.datetime "created_at",   null: false

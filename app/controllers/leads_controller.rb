@@ -27,7 +27,7 @@ class LeadsController < ApplicationController
   # GET /leads/new
   # GET /events/1/leads/new
   def new
-    @lead = Lead.new
+    @lead = Lead.new(date_on: Date.today)
     @lead.event_ids = @event.id if @event
   end
 

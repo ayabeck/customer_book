@@ -27,32 +27,4 @@
   <%= link_to 'エクスポート', export_event_leads_path(@event, format: 'csv') %>
 </p>
 
-<div class="table-responsive">
-  <table class="table table-condensed table-hover">
-    <thead>
-    <tr>
-      <th></th>
-      <th>会社名</th>
-      <th>部署名</th>
-      <th>役職</th>
-      <th>氏名</th>
-      <th>きっかけ</th>
-      <th>メモ</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    <% @leads.each do |lead| %>
-      <tr>
-        <td class="td-action"><%= link_to '詳細', lead %></td>
-        <td><%= lead.company_name %></td>
-        <td><%= lead.department %></td>
-        <td><%= lead.title %></td>
-        <td><%= lead.name %></td>
-        <td><%= lead.trigger %></td>
-        <td><%= lead.memo %></td>
-      </tr>
-    <% end %>
-    </tbody>
-  </table>
-</div>
+<%= render partial: 'leads/index_table', locals: { leads: @leads } %>

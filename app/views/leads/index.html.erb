@@ -10,33 +10,7 @@
   <%= link_to 'エクスポート', leads_path(format: 'csv') %>
 </p>
 
-<div class="table-responsive">
-  <table class="table table-condensed table-hover">
-    <thead>
-    <tr>
-      <th></th>
-      <th>会社名</th>
-      <th>部署名</th>
-      <th>役職</th>
-      <th>氏名</th>
-      <th>きっかけ</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    <% @leads.each do |lead| %>
-      <tr>
-        <td class="td-action"><%= link_to '詳細', lead %></td>
-        <td><%= lead.company_name %></td>
-        <td><%= lead.department %></td>
-        <td><%= lead.title %></td>
-        <td><%= lead.name %></td>
-        <td><%= lead.trigger %></td>
-      </tr>
-    <% end %>
-    </tbody>
-  </table>
-</div>
+<%= render partial: 'index_table', locals: { leads: @leads } %>
 
 <div class="text-center">
   <%= paginate @leads %>
