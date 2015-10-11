@@ -1,5 +1,4 @@
-<%#= simple_form_for(@lead) do |f| %>
-<%= simple_form_for([@event, @lead]) do |f| %>
+<%= simple_form_for(@lead) do |f| %>
   <%= f.error_notification %>
 
   <div class="form-inputs">
@@ -12,6 +11,8 @@
     <%= f.input :date_on, as: :date, html5: true %>
     <%= f.input :trigger %>
     <%= f.input :memo %>
+    <%= f.association :events, collection: Event.selectable,
+                      multiple: true, include_blank: true, input_html: { size: 10 } %>
   </div>
 
   <div class="form-actions">

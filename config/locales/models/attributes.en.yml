@@ -25,7 +25,7 @@ en:
         date_on: Date
         trigger: Trigger
         memo: Memo
-        event: "Entry Event"
+        events: "Entry Event"
     messages:
       success:
         create:  "%{model} was successfully created."

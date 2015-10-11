@@ -25,7 +25,7 @@ ja:
         date_on: 獲得日
         trigger: きっかけ
         memo: メモ
-        event: 参加イベント
+        events: 参加イベント
     messages:
       success:
         create:  "%{model}が作成されました。"

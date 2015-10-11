@@ -4,7 +4,11 @@
   <h2>リード<small>一覧</small></h2>
 </div>
 
-<p class="text-info"><%= icon('info-circle', 'リードはイベント詳細から作成できます。') %></p>
+<p class="link-action">
+  <%= link_to '新規作成', new_lead_path %>
+  <%= link_to 'インポート', new_import_leads_path %>
+  <%= link_to 'エクスポート', leads_path(format: 'csv') %>
+</p>
 
 <div class="table-responsive">
   <table class="table table-condensed table-hover">

@@ -1,18 +1,18 @@
 Rails.application.routes.draw do
-  resources :events do
-    resources :leads, except: [:index], shallow: true do
-      get  :export,     on: :collection
-      get  :new_import, on: :collection
-      post :import,     on: :collection
-    end
+  concern :importable do
     get  :new_import, on: :collection
     post :import,     on: :collection
   end
-  resources :leads, only: [:index], shallow: true do
-    resources :contacts do
-      get  :export,     on: :collection
-      get  :new_import, on: :collection
-      post :import,     on: :collection
+
+  resources :events, concerns: :importable do
+    resources :leads, only: [] do
+      get :export, on: :collection
+    end
+  end
+
+  resources :leads, concerns: :importable, shallow: true do
+    resources :contacts, concerns: :importable do
+      get :export, on: :collection
     end
   end
   # The priority is based upon order of creation: first created -> highest priority.

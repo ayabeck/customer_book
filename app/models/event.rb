@@ -19,4 +19,8 @@ class Event < ActiveRecord::Base
   validates :date_on, presence: true
 
   default_scope { order(date_on: :desc) }
+
+  def self.selectable
+    Event.all
+  end
 end
