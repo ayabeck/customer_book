@@ -1,41 +1,26 @@
 class ContactsController < ApplicationController
-  before_action :set_lead, only: [:index, :new, :create, :export, :new_import, :import]
-  before_action :set_contact, only: [:show, :edit, :update, :destroy]
+  before_action :set_lead, only: [:new, :create, :export, :new_import, :import]
+  before_action :set_contact, only: [:edit, :update, :destroy]
 
-  # GET /contacts
-  # GET /contacts.json
-  def index
-    # @contacts = Contact.all
-    @contacts = Contact.page(params[:page])
-  end
-
-  # GET /contacts/1
-  # GET /contacts/1.json
-  def show
-  end
-
-  # GET /contacts/new
+  # GET /leads/1/contacts/new
   def new
-    # @contact = Contact.new
-    @contact = @lead.contacts.new
-    @contact.date_on = Date.today
+    @contact = @lead.contacts.new(date_on: Date.today)
   end
 
   # GET /contacts/1/edit
   def edit
   end
 
-  # POST /contacts
-  # POST /contacts.json
+  # POST /leads/1/contacts
+  # POST /leads/1/contacts.json
   def create
-    # @contact = Contact.new(contact_params)
     @contact = @lead.contacts.new(contact_params)
 
     respond_to do |format|
       if @contact.save
         flash[:notice] = success_message(controller_name, action_name)
         format.html { redirect_to @contact.lead }
-        format.json { render :show, status: :created, location: @contact.lead }
+        format.json { render json: @contact, status: :ok }
       else
         format.html { render :new }
         format.json { render json: @contact.errors, status: :unprocessable_entity }
@@ -50,7 +35,7 @@ class ContactsController < ApplicationController
       if @contact.update(contact_params)
         flash[:notice] = success_message(controller_name, action_name)
         format.html { redirect_to @contact.lead }
-        format.json { render :show, status: :ok, location: @contact }
+        format.json { render json: @contact, status: :ok }
       else
         format.html { render :edit }
         format.json { render json: @contact.errors, status: :unprocessable_entity }

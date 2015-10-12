@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   end
 
   resources :leads, concerns: :importable, shallow: true do
-    resources :contacts, concerns: :importable do
+    resources :contacts, except: [:index, :show], concerns: :importable do
       get :export, on: :collection
     end
   end
