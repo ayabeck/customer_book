@@ -24,3 +24,13 @@ en:
   errors:
     messages:
       blank_file: "Please choose a file."
+  action:
+    index: Index
+    show: Detail
+    new: New
+    create: New
+    edit: Edit
+    update: Edit
+    destroy: Delete
+    new_import: Import
+    import: Import

@@ -50,13 +50,17 @@ module ApplicationHelper
     end
   end
 
-  # ページごとの完全なタイトルを返す
-  def full_title(page_title)
-    base_title = "CustomerBook"
-    if page_title.empty?
-      base_title
-    else
-      "#{ base_title } #{ page_title.capitalize }"
+  def page_title(controller_name)
+    base_title = 'CustomerBook'
+    "#{ base_title } #{ I18n.t("activerecord.models.#{ controller_name.singularize }") }"
+  end
+
+  def page_header(controller_name, action_name)
+    content_tag :div, class: 'page-header' do
+      content_tag :h2 do
+        concat I18n.t("activerecord.models.#{ controller_name.singularize }")
+        concat content_tag :small, I18n.t("action.#{ action_name }")
+      end
     end
   end
 end
