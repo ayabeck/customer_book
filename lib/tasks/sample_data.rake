@@ -10,7 +10,7 @@ def make_events
     name     = Faker::Company.buzzword
     category = Faker::Lorem.word
     summary  = Faker::Lorem.sentence(5)
-    date     = Faker::Date.between(6.months.ago, Date.today)
+    date     = Faker::Date.between(6.months.ago, Time.zone.today)
     Event.create!(name:     name,
                  category: category,
                  summary:  summary,

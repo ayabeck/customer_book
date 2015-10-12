@@ -13,7 +13,7 @@ class ContactsController < ApplicationController
 
   # GET /leads/1/contacts/new
   def new
-    @contact = @lead.contacts.new(date_on: Date.today)
+    @contact = @lead.contacts.new(date_on: Time.zone.today)
   end
 
   # GET /contacts/1/edit

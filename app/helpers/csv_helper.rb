@@ -44,7 +44,7 @@ module CsvHelper
       end
 
       def csv_filename
-        filename = "#{ @instance.model_name.to_s.pluralize }_#{ Time.zone.now.to_date.to_s }.csv"
+        filename = "#{ @instance.model_name.to_s.pluralize }_#{ Time.zone.today.to_s }.csv"
         @parent ? "#{ @parent.class.to_s }#{ @parent.id }_".concat(filename) : filename
       end
   end
