@@ -78,7 +78,7 @@ class DataImport
     def open_spreadsheet
       case File.extname(file.original_filename)
         when '.csv' then
-          Roo::Spreadsheet.open(file.path, extension: :csv)
+          Roo::CSV.new(file.path, csv_options: { encoding: Encoding::UTF_8 })
         when '.xlsx' then
           Roo::Spreadsheet.open(file.path, extension: :xlsx)
         else
@@ -95,7 +95,7 @@ class DataImport
     def validate_extension
       extname = File.extname(file.original_filename).downcase
       unless ALLOWED_EXTENSION.include?(extname)
-        errors.add :base, '「.csv」または「.xlsx」のファイルを選択してください。'
+        errors.add :base, '「.csv（UTF-8）」または「.xlsx」のファイルを選択してください。'
       end
     end
 end
