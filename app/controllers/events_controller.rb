@@ -1,17 +1,14 @@
 class EventsController < ApplicationController
+  include CsvHelper
+
   before_action :set_event, only: [:show, :edit, :update, :destroy]
 
   # GET /events
-  # GET /events.json
+  # GET /events.csv
   def index
     respond_to do |format|
-      format.html do
-        @events = Event.page(params[:page])
-      end
-      format.csv do
-        @events = Event.all
-        send_data(render_to_string, filename: filename_of(Event, 'csv'), type: 'text/csv; charset=UTF-8;')
-      end
+      format.html { @events = Event.page(params[:page]) }
+      format.csv  { SendCSV.new(Event.all, self) }
     end
   end
 

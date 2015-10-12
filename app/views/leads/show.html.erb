@@ -36,7 +36,7 @@
 <p class="link-action">
   <%= link_to '新規作成', new_lead_contact_path(@lead) %>
   <%= link_to 'インポート', new_import_lead_contacts_path(@lead) %>
-  <%= link_to 'エクスポート', export_lead_contacts_path(@lead, format: 'csv') %>
+  <%= link_to 'エクスポート', lead_contacts_path(@lead, format: 'csv') %>
 </p>
 
 <%= render partial: 'contacts/index_table', locals: { contacts: @contacts } %>

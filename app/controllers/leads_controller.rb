@@ -1,19 +1,17 @@
 class LeadsController < ApplicationController
-  before_action :set_event, only: [:new, :create, :export, :new_import, :import]
+  include CsvHelper
+
+  before_action :set_event, only: [:index, :new, :create, :new_import, :import]
   before_action :set_lead, only: [:show, :edit, :update, :destroy]
   before_action :set_back_url, only: [:new, :create, :new_import, :import]
 
   # GET /leads
-  # GET /leads.json
+  # GET /leads.csv
+  # GET /events/1/leads.csv
   def index
     respond_to do |format|
-      format.html do
-        @leads = Lead.page(params[:page])
-      end
-      format.csv do
-        @leads = Lead.all
-        send_data(render_to_string, filename: filename_of(Lead, 'csv'), type: 'text/csv')
-      end
+      format.html { @leads = Lead.page(params[:page]) }
+      format.csv  { @event ? SendCSV.new(@event.leads, self, @event) : SendCSV.new(Lead.all, self) }
     end
   end
 
@@ -77,12 +75,6 @@ class LeadsController < ApplicationController
       format.html { redirect_to leads_url }
       format.json { head :no_content }
     end
-  end
-
-  # GET /events/1/leads/export.csv
-  def export
-    @leads = @event.leads
-    send_data(render_to_string, filename: filename_of(Lead, 'csv', @event), type: 'text/csv')
   end
 
   # GET /leads/new_import

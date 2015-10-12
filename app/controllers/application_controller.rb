@@ -8,15 +8,4 @@ class ApplicationController < ActionController::Base
     model_name = I18n.t "activerecord.models.#{ controller_name.singularize }"
     I18n.t "activerecord.messages.success.#{ action_name }", model: model_name
   end
-  
-  # ダウンロード時のファイル名を生成
-  def filename_of(model, format, parent_instance = nil)
-    filename = "#{ model.model_name.to_s.pluralize }_#{ Time.zone.now.to_date.to_s }.#{ format }"
-    if parent_instance
-      prefix = "#{ parent_instance.class.to_s }##{ parent_instance.id }_"
-      prefix.concat(filename)
-    else
-      filename
-    end
-  end
 end

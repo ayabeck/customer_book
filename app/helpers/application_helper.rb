@@ -59,24 +59,4 @@ module ApplicationHelper
       "#{ base_title } #{ page_title.capitalize }"
     end
   end
-
-  # CSVデータの生成
-  def generate_csv_from(model, instances)
-    columns = DataImport.importable_attributes(model)
-
-    headers = columns.map { |column| model.human_attribute_name(column.to_sym) }
-    csv_data = CSV.generate(headers: headers, write_headers: true) do |csv|
-      csv << columns
-      instances.each do |row|
-        csv << row.attributes.values_at(*columns)
-      end
-    end
-
-    # Excelで開けるUTF-8にするためBOM有りにする
-    bom = "   "
-    bom.setbyte(0, 0xEF)
-    bom.setbyte(1, 0xBB)
-    bom.setbyte(2, 0xBF)
-    bom + csv_data
-  end
 end

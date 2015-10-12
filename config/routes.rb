@@ -5,15 +5,11 @@ Rails.application.routes.draw do
   end
 
   resources :events, concerns: :importable do
-    resources :leads, only: [:new, :create] do
-      get :export, on: :collection
-    end
+    resources :leads, only: [:index, :new, :create]
   end
 
   resources :leads, concerns: :importable, shallow: true do
-    resources :contacts, except: [:index, :show], concerns: :importable do
-      get :export, on: :collection
-    end
+    resources :contacts, except: [:show], concerns: :importable
   end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

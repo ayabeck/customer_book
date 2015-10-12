@@ -1,6 +1,15 @@
 class ContactsController < ApplicationController
-  before_action :set_lead, only: [:new, :create, :export, :new_import, :import]
+  include CsvHelper
+
+  before_action :set_lead, only: [:index, :new, :create, :new_import, :import]
   before_action :set_contact, only: [:edit, :update, :destroy]
+
+  # GET /leads/1/contacts.csv
+  def index
+    respond_to do |format|
+      format.csv  { SendCSV.new(@lead.contacts, self, @lead) }
+    end
+  end
 
   # GET /leads/1/contacts/new
   def new
@@ -53,12 +62,6 @@ class ContactsController < ApplicationController
       format.html { redirect_to lead }
       format.json { head :no_content }
     end
-  end
-
-  # GET /leads/1/contacts/export
-  def export
-    @contacts = Contact.where(lead_id: @lead.id)
-    send_data(render_to_string, filename: filename_of(Contact, 'csv', @lead), type: 'text/csv')
   end
 
   # GET /leads/1/contacts/new_import
