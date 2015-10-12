@@ -1,0 +1,11 @@
+<p class="link-action">
+  <%= link_to '顧客企業一覧', companies_path %>
+  <%= link_to '編集', edit_company_path(@company) %>
+  <%= link_to '削除', @company, method: :delete, data: {confirm: 'Are you sure?'} %>
+</p>
+
+<dl class="dl-horizontal">
+  <dt>会社名</dt><dd><%= @company.name %></dd>
+  <dt>業種</dt><dd><%= @company.business_type %></dd>
+  <dt>概要</dt><dd><%= auto_link_text(@company.outline) %></dd>
+</dl>

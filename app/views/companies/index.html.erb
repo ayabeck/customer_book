@@ -1,0 +1,11 @@
+<p class="link-action">
+  <%= link_to '新規作成', new_company_path %>
+  <%= link_to 'インポート', new_import_companies_path %>
+  <%= link_to 'エクスポート', companies_path(format: 'csv') %>
+</p>
+
+<%= render partial: 'index_table', locals: { companies: @companies } %>
+
+<div class="text-center">
+  <%= paginate @companies %>
+</div>

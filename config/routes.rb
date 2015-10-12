@@ -11,6 +11,9 @@ Rails.application.routes.draw do
   resources :leads, concerns: :importable, shallow: true do
     resources :contacts, except: [:show], concerns: :importable
   end
+
+  resources :companies, concerns: :importable
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

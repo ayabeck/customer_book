@@ -1,10 +1,15 @@
 ja:
   activerecord:
     models:
+      company: 顧客企業
       contact: コンタクト
       event: イベント
       lead: リード
     attributes:
+      company:
+        name: 会社名
+        business_type: 業種
+        outline: 概要
       contact:
         date_on: 日付
         content: 内容

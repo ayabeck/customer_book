@@ -1,10 +1,15 @@
 en:
   activerecord:
     models:
+      company: "Customer Company"
       contact: Contact
       event: Event
       lead: Lead
     attributes:
+      company:
+        name: "Company Name"
+        business_type: "Business Type"
+        outline: Outline
       contact:
         date_on: Date
         content: Content

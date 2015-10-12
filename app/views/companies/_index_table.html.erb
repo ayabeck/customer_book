@@ -1,0 +1,23 @@
+<div class="table-responsive">
+  <table class="table table-condensed table-hover">
+    <thead>
+    <tr>
+      <th></th>
+      <th>会社名</th>
+      <th>業種</th>
+      <th>概要</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <% companies.each do |company| %>
+      <tr>
+        <td class="td-action"><%= link_to '詳細', company %></td>
+        <td><%= truncate(company.name, length: 25) %></td>
+        <td><%= truncate(company.business_type, length: 25) %></td>
+        <td><%= truncate(company.outline, length: 50) %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>

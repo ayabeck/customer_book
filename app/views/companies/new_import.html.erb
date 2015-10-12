@@ -1,0 +1,21 @@
+<p class="link-action">
+  <%= link_to '戻る', companies_path %>
+</p>
+
+<%= simple_form_for(@data_import, url: import_companies_path) do |f| %>
+  <%= form_errors(@data_import) %>
+  <div class="form-inputs">
+    <%= f.input :file, as: :file %>
+  </div>
+  <div class="form-actions">
+    <%= bootstrap_form_button(f) %>
+  </div>
+<% end %>
+
+<br>
+
+<p>
+  CSVファイル（UTF-8）またはExcel（.xlsx）ファイルを使いデータをインポートできます。 <br>
+  <strong>id</strong>を指定した場合は一致したデータが更新されます。<br>
+  <strong>id</strong>を指定しない場合はデータが新規作成されます。
+</p>
