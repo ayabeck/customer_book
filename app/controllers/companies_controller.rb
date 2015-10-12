@@ -15,8 +15,7 @@ class CompaniesController < ApplicationController
   # GET /companies/1
   # GET /companies/1.json
   def show
-    @leads = Lead.all
-    # @leads = Lead.where()
+    @leads = Lead.company_name_is(@company.name)
   end
 
   # GET /companies/new

@@ -9,3 +9,9 @@
   <dt>業種</dt><dd><%= @company.business_type %></dd>
   <dt>概要</dt><dd><%= auto_link_text(@company.outline) %></dd>
 </dl>
+
+<blockquote>
+  <p>この顧客企業のリード</p>
+</blockquote>
+
+<%= render partial: 'leads/index_table', locals: { leads: @leads } %>

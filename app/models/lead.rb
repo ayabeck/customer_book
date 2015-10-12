@@ -25,4 +25,5 @@ class Lead < ActiveRecord::Base
   validates :date_on, presence: true
 
   default_scope { order(date_on: :desc) }
+  scope :company_name_is, -> name { where(company_name: name) }
 end

@@ -4,7 +4,9 @@
     <tr>
       <th></th>
       <th>獲得日</th>
-      <th>会社名</th>
+      <% unless controller_name == 'companies' %>
+        <th>会社名</th>
+      <% end %>
       <th>部署名</th>
       <th>役職</th>
       <th>氏名</th>
@@ -17,7 +19,9 @@
       <tr>
         <td class="td-action"><%= link_to '詳細', lead %></td>
         <td class="td-date"><%= lead.date_on %></td>
-        <td><%= truncate(lead.company_name, length: 25) %></td>
+        <% unless controller_name == 'companies' %>
+          <td><%= truncate(lead.company_name, length: 25) %></td>
+        <% end %>
         <td><%= truncate(lead.department, length: 25) %></td>
         <td><%= truncate(lead.title, length: 25) %></td>
         <td><%= truncate(lead.name, length: 25) %></td>
