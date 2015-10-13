@@ -15,3 +15,12 @@
 </blockquote>
 
 <%= render partial: 'leads/index_table', locals: { leads: @leads } %>
+
+<br>
+<blockquote>
+  <p>タイムライン</p>
+</blockquote>
+
+<% @timeline_topics.each do |topic| %>
+  <%= timeline(topic) %>
+<% end  %>

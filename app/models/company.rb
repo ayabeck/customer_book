@@ -12,4 +12,20 @@
 
 class Company < ActiveRecord::Base
   validates :name, presence: true
+
+  # この会社に関連するモデルデータを
+  # ユニークかつdate_onが新しい順で返す
+  def associated_models
+    models = []
+    leads = Lead.company_name_is(self.name)
+
+    models.concat(leads)
+    leads.each do |lead|
+      models.concat(lead.contacts)
+      models.concat(lead.events)
+    end
+
+    models.sort! { |a,b| a.date_on <=> b.date_on }
+    models.uniq.reverse
+  end
 end

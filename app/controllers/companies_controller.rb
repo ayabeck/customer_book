@@ -16,6 +16,7 @@ class CompaniesController < ApplicationController
   # GET /companies/1.json
   def show
     @leads = Lead.company_name_is(@company.name)
+    @timeline_topics = @company.associated_models
   end
 
   # GET /companies/new
