@@ -13,6 +13,8 @@
 class Company < ActiveRecord::Base
   validates :name, presence: true
 
+  default_scope { order(name: :asc) }
+
   # この会社に関連するモデルデータを
   # ユニークかつdate_onが新しい順で返す
   def associated_models
