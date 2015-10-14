@@ -14,7 +14,7 @@ module CompaniesHelper
 
     content_tag :div, class: 'media' do
       concat content_tag :div, link_to(icon_tag, url_of(object)), class: 'media-left media-middle'
-      concat content_tag :div, body_tag, class: 'media-body'
+      concat content_tag :div, link_to(body_tag, url_of(object)), class: 'media-body'
     end
   end
 
