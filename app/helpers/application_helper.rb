@@ -27,7 +27,7 @@ module ApplicationHelper
       content_tag :div, class: 'col-wrapper-nolabel' do
         content_tag :div, class: 'row' do
           content_tag :div, class: 'col-input' do
-            form.button :submit
+            form.button :submit, data: { disable_with: '処理中...' }
           end
         end
       end
