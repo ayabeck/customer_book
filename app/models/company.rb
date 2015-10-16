@@ -30,4 +30,8 @@ class Company < ActiveRecord::Base
     models.sort! { |a,b| a.date_on <=> b.date_on }
     models.uniq.reverse
   end
+
+  def self.search(company_name)
+    company_name ? Company.find_by(name: company_name) : nil
+  end
 end

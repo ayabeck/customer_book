@@ -21,7 +21,9 @@ class CompaniesController < ApplicationController
 
   # GET /companies/new
   def new
-    @company = Company.new
+    @company = params[:q] ? Company.new(name: params[:q]) : Company.new
+    session[:previous_url] = request.referer
+    @back_url = session[:previous_url]
   end
 
   # GET /companies/1/edit
@@ -39,6 +41,7 @@ class CompaniesController < ApplicationController
         format.html { redirect_to @company }
         format.json { render :show, status: :created, location: @company }
       else
+        @back_url = session[:previous_url]
         format.html { render :new }
         format.json { render json: @company.errors, status: :unprocessable_entity }
       end
@@ -85,6 +88,17 @@ class CompaniesController < ApplicationController
       redirect_to companies_url
     else
       render :new_import
+    end
+  end
+
+  # GET /companies/search?q=hoge
+  def search
+    company = Company.search(params[:q])
+    if company
+      redirect_to company
+    else
+      flash[:alert] = "「#{ params[:q] }」はまだ顧客企業に登録されていません。新しく登録しませんか？"
+      redirect_to new_company_url(q: params[:q])
     end
   end
 

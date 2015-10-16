@@ -12,7 +12,9 @@ Rails.application.routes.draw do
     resources :contacts, except: [:show], concerns: :importable
   end
 
-  resources :companies, concerns: :importable
+  resources :companies, concerns: :importable do
+    get :search, on: :collection
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
