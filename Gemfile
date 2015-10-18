@@ -13,7 +13,7 @@ gem 'coffee-rails', '~> 4.1.0'
 # gem 'therubyracer', platforms: :ruby
 
 # Use jquery as the JavaScript library
-gem 'jquery-rails', '~> 4.0'
+gem 'jquery-rails', '~> 4.0.5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
@@ -35,6 +35,8 @@ gem 'rails_autolink', '~> 1.1.6' # Link in text
 gem 'momentjs-rails', '~> 2.10.6' # Datepicker
 gem 'bootstrap3-datetimepicker-rails', '~> 4.17.37' # Datepicker
 gem 'roo', '~> 2.1.1' # Read spreadsheet
+#gem 'jquery-datatables-rails', '~> 3.3.0' # Sortable table
+gem 'jquery-datatables-rails', github: "rweng/jquery-datatables-rails", branch: "master"
 
 group :development, :test do
   # Use sqlite3 as the database for Active Record

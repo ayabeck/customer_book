@@ -10,8 +10,9 @@ class LeadsController < ApplicationController
   # GET /events/1/leads.csv
   def index
     respond_to do |format|
-      format.html { @leads = Lead.page(params[:page]) }
-      format.csv  { @event ? SendCSV.new(@event.leads, self, @event) : SendCSV.new(Lead.all, self) }
+      @leads = @event ? @event.leads : Lead.all
+      format.html
+      format.csv  { SendCSV.new(@leads, self, @event) }
     end
   end
 

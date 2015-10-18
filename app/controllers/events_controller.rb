@@ -7,8 +7,9 @@ class EventsController < ApplicationController
   # GET /events.csv
   def index
     respond_to do |format|
-      format.html { @events = Event.page(params[:page]) }
-      format.csv  { SendCSV.new(Event.all, self) }
+      @events = Event.all
+      format.html
+      format.csv  { SendCSV.new(@events, self) }
     end
   end
 

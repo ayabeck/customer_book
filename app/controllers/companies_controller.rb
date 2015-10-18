@@ -6,9 +6,10 @@ class CompaniesController < ApplicationController
   # GET /companies
   # GET /companies.csv
   def index
+    @companies = Company.all
     respond_to do |format|
-      format.html { @companies = Company.page(params[:page]) }
-      format.csv  { SendCSV.new(Company.all, self) }
+      format.html
+      format.csv  { SendCSV.new(@companies, self) }
     end
   end
 

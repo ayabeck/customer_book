@@ -18,6 +18,7 @@
 @import "bootstrap-datetimepicker";
 @import "font-awesome-sprockets";
 @import "font-awesome";
+@import "dataTables/bootstrap/3/jquery.dataTables.bootstrap";
 
 /* simple_form */
 
@@ -71,6 +72,15 @@ blockquote {
 
 .navbar-right {
   padding-right: 10px;
+}
+
+/* customized datatables */
+
+.dataTables_filter {
+  @extend .col-sm-6;
+}
+.dataTables_info {
+  @extend .col-sm-6;
 }
 
 /* my style */
